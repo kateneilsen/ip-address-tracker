@@ -1,0 +1,30 @@
+.responseInfo {
+    border-radius: 15px 15px 0 0;
+    background: #fff;
+    box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    position: absolute;
+    text-wrap: nowrap;
+    top: 25%;
+    width: 325px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+  
+  @media (min-width: 1200px) {
+    .responseInfo {
+      width: fit-content;
+      height: 161px;
+      flex-direction: row;
+      text-align: start;
+      padding-block: 2rem;
+      border-radius: 15px;
+    }
+    .responseInfo span:not(span:first-of-type) {
+      border-left: 1px solid rgb(150, 150, 150, 0.15);
+      padding-inline: 2.5rem;
+    }
+  }
