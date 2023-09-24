@@ -1,6 +1,12 @@
-import Image from "next/image";
 import styles from "./styles/page.module.css";
 import Details from "./components/Details";
+import dynamic from "next/dynamic";
+import "leaflet/dist/leaflet.css";
+
+const MyMap = dynamic(() => import("./components/Map"), {
+  ssr: false,
+  loading: () => <div>loading...</div>,
+});
 
 export default function Home() {
   return (
@@ -18,6 +24,7 @@ export default function Home() {
         </div>
       </section>
       <Details />
+      <MyMap />
     </main>
   );
 }
