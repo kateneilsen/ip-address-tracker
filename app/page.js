@@ -13,6 +13,8 @@ const MyMap = dynamic(() => import("./components/Map"), {
 
 export default function Home() {
   const [ipInfo, setIpInfo] = useState({});
+  const [state, setState] = useState("");
+  const [timezone, setTimezone] = useState("");
   const [error, setError] = useState(null);
 
   const apiKey = "da125f6470624dbbb8456f149765f748";
@@ -21,9 +23,12 @@ export default function Home() {
     const getUserLocationFromAPI = async () => {
       try {
         const response = await axios.get(
-          `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`
+          `https://api.ipgeolocation.io/ipgeo?apiKey=da125f6470624dbbb8456f149765f748`
         );
-        setIpInfo(response.data);
+        const data = response.data;
+        setIpInfo(data);
+        setState(data.state_code.split("-")[1]);
+        setTimezone(data.time_zone.offset);
       } catch (error) {
         setError("Something went wrong getting Geolocation from API!");
       }
@@ -34,8 +39,8 @@ export default function Home() {
   return (
     <main>
       <Search getSearchResults={(results) => setIpInfo(results)} />
-      <Details ipInfo={ipInfo} />
-      {/* <MyMap ipInfo={ipInfo} /> */}
+      <Details ipInfo={ipInfo} state={state} timezone={timezone} />
+      <MyMap lat={ipInfo.latitude} long={ipInfo.longitude} />
     </main>
   );
 }

@@ -1,25 +1,27 @@
 import styles from "../styles/details.module.css";
 
-export default function Details({ipInfo}) {
+export default function Details({ipInfo, state, timezone}) {
+  const data = ipInfo;
+  const stateAbbreviation = state;
   return (
     <section className={styles.responseInfo}>
       <span className={styles.textwrap}>
         <h2>IP ADDRESS</h2>
-        <b>{ipInfo.ip}</b>
+        <b>{data.ip}</b>
       </span>
       <span>
         <h2>LOCATION</h2>
         <b>
-          {ipInfo.city}, {ipInfo.country_code3}, {ipInfo.zipcode}
+          {data.city}, {stateAbbreviation} , {data.zipcode}
         </b>
       </span>
-      <span className={styles.textwrap}>
+      <span className={styles.nowrap}>
         <h2>TIMEZONE</h2>
-        <b>{ipInfo.time_zone.name}</b>
+        <b>UTC{timezone}</b>
       </span>
       <span>
         <h2>ISP</h2>
-        <b>{ipInfo.isp}</b>
+        <b>{data.isp}</b>
       </span>
     </section>
   );
