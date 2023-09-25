@@ -1,14 +1,17 @@
+
 import styles from "./styles/page.module.css";
 import Details from "./components/Details";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
+import { getDetails} from "../app/lib/getDetails";
 
 const MyMap = dynamic(() => import("./components/Map"), {
   ssr: false,
   loading: () => <div>loading...</div>,
 });
 
-export default function Home() {
+export default async function Home() {
+  const ipInfo = await getDetails();
   return (
     <main>
       <section className={styles.top}>
@@ -23,8 +26,8 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <Details />
-      <MyMap />
+      <Details ipInfo={ipInfo} />
+      <MyMap ipInfo={ipInfo} />
     </main>
   );
 }

@@ -6,10 +6,10 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import styles from "../styles/map.module.css";
 
-export default function Map() {
+export default function Map({ipInfo}) {
   return (
     <MapContainer
-      center={[51.505, -0.09]}
+      center={[ipInfo.location.lat, ipInfo.location.lng]}
       zoom={13}
       scrollWheelZoom={false}
       className={styles.map}
@@ -18,7 +18,7 @@ export default function Map() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}></Marker>
+      <Marker position={[ipInfo.location.lat, ipInfo.location.lng]} />
     </MapContainer>
   );
 }

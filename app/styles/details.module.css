@@ -13,16 +13,18 @@
     align-items: center;
     text-align: center;
     z-index: 500;
+    text-wrap: wrap;
   }
   
   @media (min-width: 1200px) {
     .responseInfo {
-      width: fit-content;
+      min-width: 1110px;
       height: 161px;
       flex-direction: row;
       text-align: start;
       padding-block: 2rem;
       border-radius: 15px;
+      /* text-wrap: wrap; */
     }
     .responseInfo span:not(span:first-of-type) {
       border-left: 1px solid rgb(150, 150, 150, 0.15);
