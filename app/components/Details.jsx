@@ -1,8 +1,7 @@
 import styles from "../styles/details.module.css";
 
-export default function Details({ipInfo, state, timezone}) {
+export default function Details({ipInfo}) {
   const data = ipInfo;
-  const stateAbbreviation = state;
   return (
     <section className={styles.responseInfo}>
       <span className={styles.textwrap}>
@@ -12,12 +11,12 @@ export default function Details({ipInfo, state, timezone}) {
       <span>
         <h2>LOCATION</h2>
         <b>
-          {data.city}, {stateAbbreviation} , {data.zipcode}
+         {ipInfo.region}
         </b>
       </span>
       <span className={styles.nowrap}>
         <h2>TIMEZONE</h2>
-        <b>UTC{timezone}</b>
+        <b>UTC{ipInfo.timeZone}</b>
       </span>
       <span>
         <h2>ISP</h2>

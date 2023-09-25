@@ -12,9 +12,14 @@ const MyMap = dynamic(() => import("./components/Map"), {
 });
 
 export default function Home() {
-  const [ipInfo, setIpInfo] = useState({});
-  const [state, setState] = useState("");
-  const [timezone, setTimezone] = useState("");
+  const [ipInfo, setIpInfo] = useState({
+    ip: "",
+    region: "",
+    timeZone: "",
+    isp: "",
+    latitude: "",
+    longitude: "",
+  });
   const [error, setError] = useState(null);
 
   const apiKey = "da125f6470624dbbb8456f149765f748";
@@ -23,12 +28,18 @@ export default function Home() {
     const getUserLocationFromAPI = async () => {
       try {
         const response = await axios.get(
-          `https://api.ipgeolocation.io/ipgeo?apiKey=da125f6470624dbbb8456f149765f748`
+          `https://geo.ipify.org/api/v2/country,city?apiKey=at_IXjpvNyYLAGvB1C0zuX7RYaRvSaD5`
         );
         const data = response.data;
-        setIpInfo(data);
-        setState(data.state_code.split("-")[1]);
-        setTimezone(data.time_zone.offset);
+        console.log(data);
+        setIpInfo({
+          ip: data.ip,
+          region: data.location.region,
+          timeZone: data.location.timezone,
+          isp: data.isp,
+          latitude: data.location.lat,
+          longitude: data.location.lng,
+        });
       } catch (error) {
         setError("Something went wrong getting Geolocation from API!");
       }
@@ -38,8 +49,19 @@ export default function Home() {
 
   return (
     <main>
-      <Search getSearchResults={(results) => setIpInfo(results)} />
-      <Details ipInfo={ipInfo} state={state} timezone={timezone} />
+      <Search
+        getSearchResults={(result) =>
+          setIpInfo({
+            ip: result.ip,
+            region: result.location.region,
+            timezone: result.location.timezone,
+            isp: result.isp,
+            latitude: result.location.lat,
+            longitude: result.location.lng,
+          })
+        }
+      />
+      <Details ipInfo={ipInfo} />
       <MyMap lat={ipInfo.latitude} long={ipInfo.longitude} />
     </main>
   );

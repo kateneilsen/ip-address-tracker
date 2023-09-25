@@ -9,7 +9,7 @@ export default function Search({getSearchResults}){
   const handleSearch = async(e) => {
     e.preventDefault();
     const response = await axios.get(
-      `https://api.ipgeolocation.io/ipgeo?apiKey=da125f6470624dbbb8456f149765f748&ip=${query}`
+      `https://geo.ipify.org/api/v2/country,city?apiKey=at_IXjpvNyYLAGvB1C0zuX7RYaRvSaD5ipAddress=${query}`
     );
     getSearchResults(response.data);
   }
