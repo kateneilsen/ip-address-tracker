@@ -4,7 +4,7 @@ import { getDetails } from "../lib/getDetails";
 export default async function Details({ipInfo}) {
   return (
     <section className={styles.responseInfo}>
-      <span>
+      <span className={styles.nowrap}>
         <h2>IP ADDRESS</h2>
         <b>{ipInfo.ip}</b>
       </span>
@@ -14,7 +14,7 @@ export default async function Details({ipInfo}) {
           {ipInfo.location.city}, {ipInfo.location.country}, {ipInfo.location.postalCode}
         </b>
       </span>
-      <span>
+      <span className={styles.nowrap}>
         <h2>TIMEZONE</h2>
         <b>UTC{ipInfo.location.timezone}</b>
       </span>
