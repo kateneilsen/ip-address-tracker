@@ -1,22 +1,21 @@
 import styles from "../styles/details.module.css";
-import { getDetails } from "../lib/getDetails";
 
-export default async function Details({ipInfo}) {
+export default function Details({ipInfo}) {
   return (
     <section className={styles.responseInfo}>
-      <span className={styles.nowrap}>
+      <span className={styles.textwrap}>
         <h2>IP ADDRESS</h2>
         <b>{ipInfo.ip}</b>
       </span>
       <span>
         <h2>LOCATION</h2>
         <b>
-          {ipInfo.location.city}, {ipInfo.location.country}, {ipInfo.location.postalCode}
+          {ipInfo.city}, {ipInfo.country_code3}, {ipInfo.zipcode}
         </b>
       </span>
-      <span className={styles.nowrap}>
+      <span className={styles.textwrap}>
         <h2>TIMEZONE</h2>
-        <b>UTC{ipInfo.location.timezone}</b>
+        <b>{ipInfo.time_zone.name}</b>
       </span>
       <span>
         <h2>ISP</h2>
