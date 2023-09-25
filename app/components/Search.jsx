@@ -8,9 +8,17 @@ export default function Search({getSearchResults}){
 
   const handleSearch = async(e) => {
     e.preventDefault();
-    const response = await axios.get(
-      `https://geo.ipify.org/api/v2/country,city?apiKey=at_IXjpvNyYLAGvB1C0zuX7RYaRvSaD5ipAddress=${query}`
-    );
+    let response;
+    if(query.includes("dns")){
+      response = await axios.get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_IXjpvNyYLAGvB1C0zuX7RYaRvSaD5&domain=${query}`
+      );
+    }else{
+      response = await axios.get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_IXjpvNyYLAGvB1C0zuX7RYaRvSaD5&ipAddress=${query}`
+      );
+    }
+    
     getSearchResults(response.data);
   }
 
