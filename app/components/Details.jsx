@@ -11,12 +11,12 @@ export default function Details({ipInfo}) {
       <span>
         <h2>LOCATION</h2>
         <b>
-         {ipInfo.region}
+         {ipInfo.location.region}
         </b>
       </span>
       <span className={styles.nowrap}>
         <h2>TIMEZONE</h2>
-        <b>UTC{ipInfo.timeZone}</b>
+        <b>UTC{ipInfo.location.timezone}</b>
       </span>
       <span>
         <h2>ISP</h2>
